@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now — Kennz Hostel</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --bg-nav: rgba(11, 17, 32, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.7);
+            --teal: #14b8a6;
+            --neon-glow: 0 0 15px rgba(20, 184, 166, 0.5);
+            --ink: #0b1120; --teal-light: #14b8a6;
+            --cream: #f8f5ef; --muted: #64748b; --border: #e2e8f0; --white: #ffffff;
+        }
+
+        [data-theme="light"] {
+            --bg-nav: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --text-main: #0b1120;
+            --text-dim: #475569;
+            --teal: #0d9488;
+            --neon-glow: 0 0 10px rgba(13, 148, 136, 0.3);
+            --cream: #ffffff;
+            --ink: #f8f5ef;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Comic Sans MS', cursive; background: var(--cream); color: var(--ink); }
+
+        /* ── Glass Navbar ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: var(--bg-nav);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between; height: 72px;
+        }
+
+        /* ── Navigation Links & Icons ── */
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+
+        .nav-links a {
+            color: var(--text-dim); text-decoration: none;
+            font-size: 0.9rem; font-weight: 500;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a i { width: 18px; height: 18px; transition: transform 0.3s; }
+
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a:hover i { transform: translateY(-2px); color: var(--teal); }
+
+        /* ── Glowing CTA ── */
+        .nav-cta {
+            background: var(--teal); color: white !important;
+            padding: 0.6rem 1.5rem; border-radius: 50px;
+            box-shadow: var(--neon-glow);
+            font-weight: 600; transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(20, 184, 166, 0.7);
+        }
+
+        /* ── Logo ── */
+        .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-logo-badge { width: 34px; height: 34px; background: var(--teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Comic Sans MS', cursive; font-size: 16px; color: white; }
+        .nav-logo-text { font-family: 'Comic Sans MS', cursive; font-size: 1.35rem; color: var(--text-main); letter-spacing: -0.02em; }
+
+        /* ── Mobile Logic ── */
+        .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-main); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
+        .mobile-menu {
+            display: none; position: absolute; top: 72px; left: 0; width: 100%;
+            background: var(--bg-nav); backdrop-filter: blur(20px);
+            flex-direction: column; padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            color: var(--text-dim); text-decoration: none; font-size: 1.1rem; font-weight: 500;
+            display: flex; align-items: center; gap: 12px; padding: 1rem;
+            border-radius: 12px; transition: all 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
+        .mobile-menu a.nav-cta {
+            color: white; text-align: center; padding: 1rem 2rem;
+            margin-top: 1rem; justify-content: center;
+        }
+        .mobile-menu a i { width: 20px; height: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: block; }
+            .apply-layout { grid-template-columns: 1fr; }
+            .sidebar { grid-template-columns: 1fr; }
+            .form-progress { flex-direction: column; gap: 0.5rem; }
+            .step::after { display: none; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+
+        /* ── PAGE HEADER ── */
+        .page-header {
+            padding-top: 68px;
+            background: linear-gradient(135deg, #0b1120 0%, #0d1f2d 100%);
+            position: relative; overflow: hidden;
+        }
+        .page-header::before {
+            content: ''; position: absolute; top: -20%; right: 0;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 65%);
+        }
+        .page-header-inner {
+            max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 3rem;
+            position: relative; z-index: 1;
+        }
+        .page-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 0.75rem; }
+        .page-title { font-family: 'Comic Sans MS', cursive; font-size: clamp(2.2rem, 4vw, 3.2rem); color: white; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .page-title em { font-style: italic; color: var(--teal-light); }
+        .page-sub { color: rgba(255,255,255,0.5); font-size: 1.05rem; max-width: 480px; }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
+        .breadcrumb a { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; }
+        .breadcrumb span { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
+        .breadcrumb .current { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+        /* ── FORM LAYOUT ── */
+        .apply-section {
+            padding: 4rem 2rem 6rem;
+            background: var(--cream);
+        }
+        .apply-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 360px; gap: 3rem; align-items: start;
+        }
+
+        /* ── FORM CARD ── */
+        .form-card {
+            background: white; border: 1.5px solid var(--border); border-radius: 20px;
+            overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+        }
+        .form-progress {
+            background: var(--ink); padding: 1.5rem 2rem;
+            display: flex; align-items: center; gap: 0; 
+        }
+        .step {
+            display: flex; align-items: center; gap: 8px; flex: 1;
+        }
+        .step:not(:last-child)::after {
+            content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.15); margin: 0 8px;
+        }
+        .step-dot {
+            width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.72rem; font-weight: 700; flex-shrink: 0;
+        }
+        .step-dot.done { background: var(--teal); color: white; }
+        .step-dot.active { background: white; color: var(--ink); }
+        .step-dot.pending { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); }
+        .step-label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.5); white-space: nowrap; }
+        .step.active-step .step-label { color: white; }
+
+        .form-body { padding: 2.5rem; }
+        .form-section { margin-bottom: 2.5rem; }
+        .form-section-title {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--teal); margin-bottom: 1.5rem; padding-bottom: 0.6rem;
+            border-bottom: 1.5px solid var(--border);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+        .form-row.single { grid-template-columns: 1fr; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        label { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
+        label .req { color: var(--teal); }
+        input, select, textarea {
+            width: 100%; padding: 0.75rem 1rem;
+            border: 1.5px solid var(--border); border-radius: 10px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--ink);
+            background: var(--cream); transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,148,136,0.1);
+            background: white;
+        }
+        input::placeholder, textarea::placeholder { color: #a0aec0; }
+        select { appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1.2em; padding-right: 2.5rem; }
+        textarea { resize: vertical; min-height: 110px; }
+        .btn-submit {
+            width: 100%; background: var(--teal); color: white;
+            padding: 1rem 2rem; border-radius: 12px; border: none;
+            font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: background 0.2s, transform 0.15s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 0.5rem;
+        }
+        .btn-submit:hover { background: #0b8178; transform: translateY(-1px); }
+        .form-note { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 1rem; line-height: 1.5; }
+
+        /* ── SIDEBAR ── */
+        .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+        .sidebar-card {
+            background: white; border: 1.5px solid var(--border); border-radius: 16px; padding: 1.8rem;
+        }
+        .sidebar-card h3 { font-family: 'Comic Sans MS', cursive; font-size: 1.25rem; color: var(--ink); margin-bottom: 1rem; }
+        .sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .sidebar-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; color: var(--muted); }
+        .sidebar-list li::before { content: '✓'; color: var(--teal); font-weight: 700; margin-top: 1px; flex-shrink: 0; }
+        .sidebar-pricing { background: var(--ink); border-color: var(--ink); }
+        .sidebar-pricing h3 { color: white; }
+        .pricing-row { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .pricing-row:last-of-type { border-bottom: none; }
+        .pricing-row .room { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+        .pricing-row .price { font-weight: 700; color: var(--teal-light); font-size: 0.95rem; }
+        .contact-mini { background: linear-gradient(135deg, #0d9488, #0b7a72); border-color: transparent; }
+        .contact-mini h3 { color: white; }
+        .contact-mini p { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 1.2rem; }
+        .btn-wa-mini {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: rgba(255,255,255,0.15); color: white; padding: 0.75rem 1rem;
+            border-radius: 10px; font-weight: 600; font-size: 0.875rem; text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-wa-mini:hover { background: rgba(255,255,255,0.25); }
+
+        /* ── FOOTER ── */
+        footer { background: #060d18; border-top: 1px solid rgba(255,255,255,0.06); }
+        .footer-top { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-brand p { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 260px; margin-top: 1rem; }
+        .footer-col h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-col ul li a { font-size: 0.875rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: white; }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+        .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+        .footer-bottom-links { display: flex; gap: 2rem; }
+        .footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+        .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+
+        @media (max-width: 900px) {
+            .apply-inner { grid-template-columns: 1fr; }
+            .sidebar { order: -1; display: grid; grid-template-columns: 1fr 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .footer-brand { grid-column: 1/-1; }
+        }
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: block; }
+            .form-row { grid-template-columns: 1fr; }
+            .sidebar { grid-template-columns: 1fr; }
+            .form-progress { flex-direction: column; gap: 0.5rem; }
+            .step::after { display: none; }
+            .footer-top { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="glass-nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-badge">K</div>
+            <span class="nav-logo-text">Kennz Hostel</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html#features"><i data-lucide="zap"></i> Features</a>
+            <a href="index.html#pricing"><i data-lucide="credit-card"></i> Pricing</a>
+            <a href="gallery.html"><i data-lucide="image"></i> Gallery</a>
+            <a href="index.html#contact"><i data-lucide="mail"></i> Contact</a>
+            <a href="apply.html" class="nav-cta">Apply Now</a>
+        </div>
+
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#features"><i data-lucide="zap"></i> Features</a>
+        <a href="index.html#pricing"><i data-lucide="credit-card"></i> Pricing</a>
+        <a href="gallery.html"><i data-lucide="image"></i> Gallery</a>
+        <a href="apply.html" class="nav-cta">Apply Now</a>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="page-header-inner">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span class="current">Apply</span>
+        </div>
+        <div class="page-label">Room Application</div>
+        <h1 class="page-title">Apply for <em>Your Room</em></h1>
+        <p class="page-sub">Fill out the form below and we'll reach out via WhatsApp to confirm your booking.</p>
+    </div>
+</div>
+
+<!-- APPLICATION FORM -->
+<section class="apply-section">
+    <div class="apply-inner">
+        <!-- FORM -->
+        <div class="form-card">
+            <div class="form-progress">
+                <div class="step active-step">
+                    <div class="step-dot active">1</div>
+                    <span class="step-label">Personal</span>
+                </div>
+                <div class="step">
+                    <div class="step-dot pending">2</div>
+                    <span class="step-label">Academic</span>
+                </div>
+                <div class="step">
+                    <div class="step-dot pending">3</div>
+                    <span class="step-label">Room Prefs</span>
+                </div>
+                <div class="step">
+                    <div class="step-dot pending">4</div>
+                    <span class="step-label">Submit</span>
+                </div>
+            </div>
+            <div class="form-body">
+                <form id="applicationForm">
+                    <!-- Personal Info -->
+                    <div class="form-section">
+                        <div class="form-section-title">Personal Information</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name <span class="req">*</span></label>
+                                <input type="text" id="fullName" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number <span class="req">*</span></label>
+                                <input type="tel" id="phone" required placeholder="0XX XXX XXXX">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email Address <span class="req">*</span></label>
+                                <input type="email" id="email" required placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Gender <span class="req">*</span></label>
+                                <select id="gender" required>
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Info -->
+                    <div class="form-section">
+                        <div class="form-section-title">Academic Information</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>University / Institution <span class="req">*</span></label>
+                                <input type="text" id="university" required placeholder="e.g., Pentecost University">
+                            </div>
+                            <div class="form-group">
+                                <label>Programme / Major <span class="req">*</span></label>
+                                <input type="text" id="program" required placeholder="e.g., Computer Science">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Current Level <span class="req">*</span></label>
+                                <select id="level" required>
+                                    <option value="">Select level</option>
+                                    <option value="Level 100">Level 100</option>
+                                    <option value="Level 200">Level 200</option>
+                                    <option value="Level 300">Level 300</option>
+                                    <option value="Level 400">Level 400</option>
+                                    <option value="Postgraduate">Postgraduate</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Student ID <span style="color:var(--muted); font-weight:400;">(Optional)</span></label>
+                                <input type="text" id="studentId" placeholder="e.g., PU/2024/0001">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Room Preferences -->
+                    <div class="form-section">
+                        <div class="form-section-title">Room Preferences</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Preferred Room Type <span class="req">*</span></label>
+                                <select id="roomType" required>
+                                    <option value="">Select room type</option>
+                                    <option value="Single Room">Single Room — GH₵ 7,500/sem</option>
+                                    <option value="Shared Room (2 persons)">Shared Room (2) — GH₵ 5,000/sem</option>
+                                    <option value="Shared Room (4 persons)">Shared Room (4) — GH₵ 3,500/sem</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Semester <span class="req">*</span></label>
+                                <select id="semester" required>
+                                    <option value="">Select semester</option>
+                                    <option value="Second Semester 2024/2025">Second Semester 2024/2025</option>
+                                    <option value="First Semester 2025/2026">First Semester 2025/2026</option>
+                                    <option value="Second Semester 2025/2026">Second Semester 2025/2026</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contact -->
+                    <div class="form-section">
+                        <div class="form-section-title">Emergency Contact</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Contact Name <span class="req">*</span></label>
+                                <input type="text" id="emergencyName" required placeholder="Full name of emergency contact">
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Phone <span class="req">*</span></label>
+                                <input type="tel" id="emergencyPhone" required placeholder="Emergency contact number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional -->
+                    <div class="form-section" style="margin-bottom:0;">
+                        <div class="form-section-title">Additional Notes</div>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label>Special Requests <span style="color:var(--muted); font-weight:400;">(Optional)</span></label>
+                                <textarea id="notes" placeholder="Any special requirements or additional information…"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Submit Application via WhatsApp
+                    </button>
+                    <p class="form-note">By submitting, you agree to be contacted via WhatsApp about your application.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-card sidebar-pricing">
+                <h3>Room Pricing</h3>
+                <div class="pricing-row">
+                    <span class="room">4-Person Shared</span>
+                    <span class="price">GH₵ 3,500/sem</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="room">2-Person Shared</span>
+                    <span class="price">GH₵ 5,000/sem</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="room">Single Room</span>
+                    <span class="price">GH₵ 7,500/sem</span>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <h3>What's Included</h3>
+                <ul class="sidebar-list">
+                    <li>24/7 security & monitoring</li>
+                    <li>Regular professional cleaning</li>
+                    <li>Reliable water supply</li>
+                    <li>Backup generator power</li>
+                    <li>On-site Jukel market</li>
+                    <li>Laundry services</li>
+                    <li>Study areas</li>
+                    <li>Minutes from campus</li>
+                </ul>
+            </div>
+            <div class="sidebar-card contact-mini">
+                <h3>Need Help?</h3>
+                <p>Have questions before applying? Chat with us directly on WhatsApp.</p>
+                <a href="https://wa.me/233598490904?text=Hi%20Kennz!%20I%20have%20questions%20about%20applying." target="_blank" class="btn-wa-mini">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Chat on WhatsApp
+                </a>
+            </div>
+            <div class="sidebar-card" style="text-align:center;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/233598490904?text=Hi%20Kennz%20Hostel!%20I'm%20interested%20in%20booking%20a%20room." alt="QR Code" style="width:120px; height:120px; margin:0 auto 0.75rem; display:block; border-radius:8px;">
+                <p style="font-size:0.78rem; color:var(--muted); font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">WhatsApp</p>
+                <a href="https://wa.me/233598490904" target="_blank" style="font-size:0.8rem; color:var(--teal); font-weight:600; text-decoration:none;">0598 490 904</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-badge">K</div>
+                <span class="nav-logo-text">Kennz Hostel</span>
+            </a>
+            <p>Premium off-campus student accommodation minutes from Pentecost University, Accra. Designed for focus, comfort, and academic success.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="apply.html">Apply Now</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+                <li><a href="https://wa.me/233598490904" target="_blank">WhatsApp: 0598490904</a></li>
+                <li><a href="mailto:ittztupac@gmail.com">ittztupac@gmail.com</a></li>
+                <li><a href="https://www.kennzhostel.pxxl.click" target="_blank">Student Portal</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="#">Jukel Market</a></li>
+                <li><a href="#">Laundry Services</a></li>
+                <li><a href="#">Room Delivery</a></li>
+                <li><a href="#">Maintenance</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Kennz Hostel. Managed for Academic Excellence.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Cookies</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Elements
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    // ── Hamburger Toggle ──
+    hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    document.getElementById('applicationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fullName = document.getElementById('fullName').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const gender = document.getElementById('gender').value;
+        const university = document.getElementById('university').value;
+        const program = document.getElementById('program').value;
+        const level = document.getElementById('level').value;
+        const studentId = document.getElementById('studentId').value;
+        const roomType = document.getElementById('roomType').value;
+        const semester = document.getElementById('semester').value;
+        const emergencyName = document.getElementById('emergencyName').value;
+        const emergencyPhone = document.getElementById('emergencyPhone').value;
+        const notes = document.getElementById('notes').value;
+
+        const message = `*NEW HOSTEL APPLICATION*%0A%0A` +
+            `*Personal Information*%0A` +
+            `👤 Name: ${fullName}%0A` +
+            `📱 Phone: ${phone}%0A` +
+            `📧 Email: ${email}%0A` +
+            `⚧ Gender: ${gender}%0A%0A` +
+            `*Academic Information*%0A` +
+            `🎓 University: ${university}%0A` +
+            `📚 Program: ${program}%0A` +
+            `📊 Level: ${level}%0A` +
+            `🆔 Student ID: ${studentId || 'Not provided'}%0A%0A` +
+            `*Room Preferences*%0A` +
+            `🏠 Room Type: ${roomType}%0A` +
+            `📅 Semester: ${semester}%0A%0A` +
+            `*Emergency Contact*%0A` +
+            `👨‍👩‍👧 Name: ${emergencyName}%0A` +
+            `📞 Phone: ${emergencyPhone}%0A%0A` +
+            `*Additional Notes*%0A` +
+            `${notes || 'None'}%0A%0A` +
+            `----%0ASubmitted via Kennz Hostel Website`;
+
+        window.open(`https://wa.me/233598490904?text=${message}`, '_blank');
+    });
+</script>
+</body>
+</html>
