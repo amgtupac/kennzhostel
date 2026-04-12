@@ -35,7 +35,7 @@
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Comic Sans MS', cursive; background: var(--cream); color: var(--ink); }
+        body { font-family: Arial, Helvetica, sans-serif; background: var(--cream); color: var(--ink); }
 
         /* ── Glass Navbar ── */
         nav {
@@ -84,9 +84,9 @@
         .nav-logo-badge {
             width: 34px; height: 34px; background: var(--teal); border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Comic Sans MS', cursive; font-size: 16px; color: white;
+            font-family: Arial, sans-serif; font-size: 16px; color: white;
         }
-        .nav-logo-text { font-family: 'Comic Sans MS', cursive; font-size: 1.35rem; color: var(--text-main); letter-spacing: -0.02em; }
+        .nav-logo-text { font-family: Arial, sans-serif; font-size: 1.35rem; color: var(--text-main); letter-spacing: -0.02em; }
 
         /* ── Mobile Logic ── */
         .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
@@ -147,7 +147,7 @@
         }
         .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--teal-light); border-radius: 50%; }
         .hero h1 {
-            font-family: 'Comic Sans MS', cursive;
+            font-family: Arial, sans-serif;
             font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.08;
             color: white; margin-bottom: 1.5rem; letter-spacing: -0.02em;
         }
@@ -206,7 +206,7 @@
             border-right: 1px solid rgba(255,255,255,0.06);
         }
         .stat-item:last-child { border-right: none; }
-        .stat-num { font-family: 'Comic Sans MS', cursive; font-size: 2.4rem; color: var(--teal-light); display: block; }
+        .stat-num { font-family: Arial, sans-serif; font-size: 2.4rem; color: var(--teal-light); display: block; }
         .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.45); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
 
         /* ── FEATURES ── */
@@ -217,7 +217,7 @@
             color: var(--teal); margin-bottom: 0.75rem;
         }
         .section-title {
-            font-family: 'Comic Sans MS', cursive; font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-family: Arial, sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem);
             line-height: 1.15; color: var(--ink); margin-bottom: 1rem; letter-spacing: -0.02em;
         }
         .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 540px; line-height: 1.7; }
@@ -248,7 +248,7 @@
             background: var(--teal); border-radius: 16px; padding: 1.4rem 1.8rem;
             box-shadow: 0 12px 32px rgba(13,148,136,0.4);
         }
-        .about-badge-num { font-family: 'Comic Sans MS', cursive; font-size: 2.4rem; color: white; display: block; line-height: 1; }
+        .about-badge-num { font-family: Arial, sans-serif; font-size: 2.4rem; color: white; display: block; line-height: 1; }
         .about-badge-label { font-size: 0.75rem; color: rgba(255,255,255,0.75); letter-spacing: 0.05em; margin-top: 4px; display: block; }
         .about-content .section-title { color: white; }
         .about-content .section-sub { color: rgba(255,255,255,0.5); margin-bottom: 2rem; }
@@ -277,7 +277,7 @@
             padding: 4px 14px; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
         }
         .pricing-type { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 1rem; }
-        .pricing-price { font-family: 'Comic Sans MS', cursive; font-size: 2.6rem; color: var(--ink); line-height: 1; }
+        .pricing-price { font-family: Arial, sans-serif; font-size: 2.6rem; color: var(--ink); line-height: 1; }
         .pricing-card.featured .pricing-price { color: white; }
         .pricing-period { font-size: 0.85rem; color: var(--muted); margin-top: 4px; margin-bottom: 1.5rem; }
         .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.5); }
@@ -364,7 +364,7 @@
         @media (max-width: 600px) {
             .nav-links { display: none; }
             .nav-hamburger { display: block; }
-            .features-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
             .stats-inner { grid-template-columns: 1fr 1fr; }
             .hero-actions { flex-direction: column; }
             .btn-primary, .btn-outline { text-align: center; justify-content: center; }
@@ -385,7 +385,6 @@
 
         <div class="nav-links">
             <a href="#features"><i data-lucide="zap"></i> Features</a>
-            <a href="#pricing"><i data-lucide="credit-card"></i> Pricing</a>
             <a href="gallery.html"><i data-lucide="image"></i> Gallery</a>
             <a href="#contact"><i data-lucide="mail"></i> Contact</a>
             <a href="apply.html" class="nav-cta">Apply Now</a>
@@ -398,7 +397,6 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <a href="#features"><i data-lucide="zap"></i> Features</a>
-        <a href="#pricing"><i data-lucide="credit-card"></i> Pricing</a>
         <a href="gallery.html"><i data-lucide="image"></i> Gallery</a>
         <a href="apply.html" class="nav-cta">Apply Now</a>
     </div>
@@ -410,7 +408,6 @@
         <div class="hero-content">
             <div class="hero-badge">Off-Campus Living · Accra, Ghana</div>
             <h1>Elevate Your<br><em>Student Life.</em></h1>
-            <p class="hero-sub">Secure, professional accommodation minutes from Pentecost University. Built for focus, comfort, and academic success.</p>
             <div class="hero-actions">
                 <a href="gallery.html" class="btn-primary">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zM14 6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V6zM4 16a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2zM14 16a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/></svg>
@@ -431,7 +428,7 @@
                 </div>
             </div>
             <div class="hero-qr">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/233598490904?text=Hi%20Kennz%20Hostel!%20I'm%20interested%20in%20booking%20a%20room." alt="QR Code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/233504186466?text=Hi%20Kennz%20Hostel!%20I'm%20interested%20in%20booking%20a%20room." alt="QR Code">
                 <p>Scan to Chat</p>
             </div>
         </div>
@@ -442,8 +439,8 @@
 <div class="stats-strip">
     <div class="stats-inner">
         <div class="stat-item">
-            <span class="stat-num">3,500+</span>
-            <span class="stat-label">GH₵ Starting Price</span>
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Affordable</span>
         </div>
         <div class="stat-item">
             <span class="stat-num">24/7</span>
@@ -451,7 +448,7 @@
         </div>
         <div class="stat-item">
             <span class="stat-num">3</span>
-            <span class="stat-label">Room Options</span>
+            <span class="stat-label"> in a room</span>
         </div>
         <div class="stat-item">
             <span class="stat-num">5 min</span>
@@ -465,71 +462,36 @@
     <div class="section-inner">
         <div class="section-label">Why Choose Us</div>
         <h2 class="section-title">Everything You Need<br>to Thrive Academically</h2>
-        <p class="section-sub">Purpose-built amenities that let you focus on what matters most — your education.</p>
         <div class="features-grid">
             <div class="feature-card">
                 <span class="feature-icon">📍</span>
                 <div class="feature-title">Prime Location</div>
-                <p class="feature-desc">Just minutes away from Pentecost University campus lectures and facilities.</p>
+                <p class="feature-desc">Minutes from Pentecost University campus.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🧹</span>
                 <div class="feature-title">Professional Cleaning</div>
-                <p class="feature-desc">Regular, thorough service for a spotless and hygienic living space.</p>
+                <p class="feature-desc">Regular service for a clean living space.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🛡️</span>
                 <div class="feature-title">24/7 Security</div>
-                <p class="feature-desc">Round-the-clock monitoring and on-site guards for your complete safety.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🛒</span>
-                <div class="feature-title">On-site Jukel</div>
-                <p class="feature-desc">In-compound market, laundry services, and delivery — everything at your doorstep.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">💡</span>
-                <div class="feature-title">Reliable Power</div>
-                <p class="feature-desc">Backup generator ensures uninterrupted studying and comfort at all times.</p>
+                <p class="feature-desc">Round-the-clock monitoring and guards.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🚿</span>
                 <div class="feature-title">Water Supply</div>
-                <p class="feature-desc">Consistent water availability — no more worrying about water outages.</p>
+                <p class="feature-desc">Consistent water availability always.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">📚</span>
                 <div class="feature-title">Study Areas</div>
-                <p class="feature-desc">Dedicated quiet zones designed to maximise your focus and productivity.</p>
+                <p class="feature-desc">Dedicated quiet zones for focus.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🌐</span>
                 <div class="feature-title">Community</div>
-                <p class="feature-desc">A vibrant student community to connect, collaborate, and grow together.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ── PRICING ── -->
-<section class="section pricing-section" id="pricing">
-    <div class="section-inner">
-        <div class="section-label">Pricing & Rooms</div>
-        <h2 class="section-title">Choose Your Space</h2>
-        <p class="section-sub">Flexible room options to fit every budget, all with the same premium Kennz experience.</p>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <div class="pricing-type">4-Person Shared</div>
-                <div class="pricing-price">GH₵ 3,500</div>
-                <div class="pricing-period">per semester</div>
-                <ul class="pricing-features">
-                    <li>Shared room with 3 others</li>
-                    <li>Individual storage space</li>
-                    <li>All amenities included</li>
-                    <li>24/7 security</li>
-                    <li>Access to common areas</li>
-                </ul>
-                <a href="apply.html" class="btn-pricing-outline">Apply Now</a>
+                <p class="feature-desc">Vibrant student community to connect.</p>
             </div>
         </div>
     </div>
@@ -540,18 +502,17 @@
     <div class="section-inner">
         <div class="section-label">Get In Touch</div>
         <h2 class="section-title">Ready to Move In?</h2>
-        <p class="section-sub">Reach out via WhatsApp or email — we'll respond quickly to any questions about availability and pricing.</p>
         <div class="contact-grid">
-            <a href="https://wa.me/233598490904?text=Hi%20Kennz%20Hostel!%20I'm%20interested%20in%20booking%20a%20room." target="_blank" class="contact-card">
+            <a href="https://wa.me/233504186466?text=Hello!%20I'm%20interested%20in%20accommodation%20at%20Kennz%20Hostel.%20Can%20you%20please%20provide%20more%20information%20about%20availability%20and%20pricing?" target="_blank" class="contact-card">
                 <span class="contact-icon">💬</span>
                 <div class="contact-label">WhatsApp</div>
-                <div class="contact-value">0598 490 904</div>
+                <div class="contact-value">0504 186 466</div>
                 <div class="contact-sub">Tap to chat now</div>
             </a>
-            <a href="mailto:ittztupac@gmail.com" class="contact-card">
+            <a href="mailto:kennzhostel@gmail.com" class="contact-card">
                 <span class="contact-icon">✉️</span>
                 <div class="contact-label">Email</div>
-                <div class="contact-value">ittztupac@gmail.com</div>
+                <div class="contact-value">kennzhostel@gmail.com</div>
                 <div class="contact-sub">We reply within 24hrs</div>
             </a>
             <a href="https://www.google.com/maps/place/Pentecost+University" target="_blank" class="contact-card">
@@ -578,7 +539,6 @@
             <h4>Navigate</h4>
             <ul>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="apply.html">Apply Now</a></li>
             </ul>
@@ -586,8 +546,8 @@
         <div class="footer-col">
             <h4>Contact</h4>
             <ul>
-                <li><a href="https://wa.me/233598490904" target="_blank">WhatsApp: 0598490904</a></li>
-                <li><a href="mailto:ittztupac@gmail.com">ittztupac@gmail.com</a></li>
+                <li><a href="https://wa.me/233504186466" target="_blank">WhatsApp: 0504186466</a></li>
+                <li><a href="mailto:kennzhostel@gmail.com">kennzhostel@gmail.com</a></li>
                 <li><a href="https://www.kennzhostel.pxxl.click" target="_blank">Student Portal</a></li>
             </ul>
         </div>
