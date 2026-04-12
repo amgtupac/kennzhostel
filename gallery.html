@@ -30,7 +30,7 @@
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Comic Sans MS', cursive; background: var(--cream); color: var(--ink); }
+        body { font-family: Arial, Helvetica, sans-serif; background: var(--cream); color: var(--ink); }
 
         /* ── Glass Navbar ── */
         nav {
@@ -76,8 +76,8 @@
 
         /* ── Logo ── */
         .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .nav-logo-badge { width: 34px; height: 34px; background: var(--teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Comic Sans MS', cursive; font-size: 16px; color: white; }
-        .nav-logo-text { font-family: 'Comic Sans MS', cursive; font-size: 1.35rem; color: var(--text-main); letter-spacing: -0.02em; }
+        .nav-logo-badge { width: 34px; height: 34px; background: var(--teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-size: 16px; color: white; }
+        .nav-logo-text { font-family: Arial, sans-serif; font-size: 1.35rem; color: var(--text-main); letter-spacing: -0.02em; }
 
         /* ── Mobile Logic ── */
         .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
@@ -125,7 +125,7 @@
             position: relative; z-index: 1;
         }
         .page-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 0.75rem; }
-        .page-title { font-family: 'Comic Sans MS', cursive; font-size: clamp(2.2rem, 4vw, 3.2rem); color: white; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .page-title { font-family: Arial, sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); color: white; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
         .page-title em { font-style: italic; color: var(--teal-light); }
         .page-sub { color: rgba(255,255,255,0.5); font-size: 1.05rem; max-width: 500px; }
         .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
@@ -176,7 +176,7 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
         }
         .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; }
-        .section-title { font-family: 'Comic Sans MS', cursive; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.15; color: var(--ink); margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .section-title { font-family: Arial, sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.15; color: var(--ink); margin-bottom: 1rem; letter-spacing: -0.02em; }
         .detail-cards { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
         .detail-card {
             border: 1.5px solid var(--border); border-radius: 14px; padding: 1.4rem 1.8rem;
@@ -190,7 +190,7 @@
             background: var(--ink); border-radius: 20px; padding: 2.5rem;
             box-shadow: 0 20px 60px rgba(11,17,32,0.15);
         }
-        .contact-box h3 { font-family: 'Comic Sans MS', cursive; font-size: 1.8rem; color: white; margin-bottom: 0.5rem; }
+        .contact-box h3 { font-family: Arial, sans-serif; font-size: 1.8rem; color: white; margin-bottom: 0.5rem; }
         .contact-box p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; }
         .contact-row { margin-bottom: 1.5rem; }
         .contact-row label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: block; margin-bottom: 4px; }
@@ -280,7 +280,6 @@
 
         <div class="nav-links">
             <a href="index.html#features"><i data-lucide="zap"></i> Features</a>
-            <a href="index.html#pricing"><i data-lucide="credit-card"></i> Pricing</a>
             <a href="gallery.html" class="active"><i data-lucide="image"></i> Gallery</a>
             <a href="index.html#contact"><i data-lucide="mail"></i> Contact</a>
             <a href="apply.html" class="nav-cta">Apply Now</a>
@@ -293,7 +292,6 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html#features"><i data-lucide="zap"></i> Features</a>
-        <a href="index.html#pricing"><i data-lucide="credit-card"></i> Pricing</a>
         <a href="gallery.html"><i data-lucide="image"></i> Gallery</a>
         <a href="apply.html" class="nav-cta">Apply Now</a>
     </div>
@@ -309,7 +307,6 @@
         </div>
         <div class="page-label">Virtual Tour</div>
         <h1 class="page-title">Inside <em>Kennz Hostel</em></h1>
-        <p class="page-sub">Take a look at our thoughtfully designed spaces — from cosy bedrooms to shared study areas.</p>
     </div>
 </div>
 
@@ -364,13 +361,13 @@
                 <p>Questions about availability or pricing? We're here to help.</p>
                 <div class="contact-row">
                     <label>WhatsApp Number</label>
-                    <div class="val">0598 490 904</div>
+                    <div class="val">0504 186 466</div>
                 </div>
                 <div class="contact-row">
                     <label>Email Address</label>
-                    <div class="val"><a href="mailto:ittztupac@gmail.com">ittztupac@gmail.com</a></div>
+                    <div class="val"><a href="mailto:kennzhostel@gmail.com">kennzhostel@gmail.com</a></div>
                 </div>
-                <a href="https://wa.me/233598490904?text=Hi%20Kennz%20Hostel!%20I'm%20interested%20in%20booking%20a%20room." target="_blank" class="btn-whatsapp">
+                <a href="https://wa.me/233504186466?text=Hello!%20I'm%20interested%20in%20accommodation%20at%20Kennz%20Hostel.%20Can%20you%20please%20provide%20more%20information%20about%20availability%20and%20pricing?" target="_blank" class="btn-whatsapp">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
                     Chat on WhatsApp
                 </a>
@@ -393,8 +390,6 @@
             <h4>Navigate</h4>
             <ul>
                 <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#pricing">Pricing</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="apply.html">Apply Now</a></li>
             </ul>
@@ -402,8 +397,8 @@
         <div class="footer-col">
             <h4>Contact</h4>
             <ul>
-                <li><a href="https://wa.me/233598490904" target="_blank">WhatsApp: 0598490904</a></li>
-                <li><a href="mailto:ittztupac@gmail.com">ittztupac@gmail.com</a></li>
+                <li><a href="https://wa.me/233504186466" target="_blank">WhatsApp: 0504186466</a></li>
+                <li><a href="mailto:kennzhostel@gmail.com">kennzhostel@gmail.com</a></li>
                 <li><a href="https://www.kennzhostel.pxxl.click" target="_blank">Student Portal</a></li>
             </ul>
         </div>
